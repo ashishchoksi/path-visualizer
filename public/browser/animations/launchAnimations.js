@@ -20,6 +20,7 @@ function launchAnimations(board, success, type, object, algorithm, heuristic) {
 
             } else {
               if (type === "weighted") {
+
                 newSuccess = weightedSearchAlgorithm(board.nodes, board.object, board.target, board.nodesToAnimate, board.boardArray, algorithm, heuristic);
               } else {
                 newSuccess = unweightedSearchAlgorithm(board.nodes, board.object, board.target, board.nodesToAnimate, board.boardArray, algorithm);
@@ -110,7 +111,7 @@ function launchAnimations(board, success, type, object, algorithm, heuristic) {
 
   function shortestPathTimeout(index) {
     setTimeout(function () {
-      if (index === shortestNodes.length){
+      if (index === shortestNodes.length) {
         board.reset();
         if (object) {
           shortestPathChange(board.nodes[board.target], shortestNodes[index - 1]);

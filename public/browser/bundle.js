@@ -759,8 +759,11 @@
         }
       }
 
+      // start button click event.....
+
       document.getElementById("startButtonStart").onclick = () => {
         if (!this.currentAlgorithm) {
+
           document.getElementById("startButtonStart").innerHTML = '<button class="btn btn-default navbar-btn" type="button">Pick an Algorithm!</button>'
         } else {
           this.clearPath("clickedButton");
@@ -768,6 +771,7 @@
           let weightedAlgorithms = ["dijkstra", "CLA", "greedy"];
           let unweightedAlgorithms = ["dfs", "bfs"];
           let success;
+
           if (this.currentAlgorithm === "bidirectional") {
             if (!this.numberOfObjects) {
               success = bidirectional(this.nodes, this.start, this.target, this.nodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic, this);
@@ -787,6 +791,7 @@
             }
             this.algoDone = true;
           } else if (weightedAlgorithms.includes(this.currentAlgorithm)) {
+
             if (!this.numberOfObjects) {
               success = weightedSearchAlgorithm(this.nodes, this.start, this.target, this.nodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic);
               launchAnimations(this, success, "weighted");
@@ -971,7 +976,9 @@
       } else if (this.currentAlgorithm === "bidirectional") {
         name = "Bidirectional Swarm Algorithm";
       }
+
       if (unweighted.includes(this.currentAlgorithm)) {
+
         if (this.currentAlgorithm === "dfs") {
           document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>unweighted</b></i> and <i><b>does not guarantee</b></i> the shortest path!`;
         } else {
@@ -984,9 +991,15 @@
           document.styleSheets["1"].rules[j].style.backgroundImage = backgroundImage.replace("triangle", "spaceship");
         }
       } else {
+
         if (this.currentAlgorithm === "greedy" || this.currentAlgorithm === "CLA") {
           document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>does not guarantee</b></i> the shortest path!`;
         }
+
+        if (guaranteed.includes(this.currentAlgorithm)) {
+          document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>guarantees</b></i> the shortest path!`;
+        }
+
         document.getElementById("weightLegend").className = "";
         for (let i = 0; i < 14; i++) {
           let j = i.toString();
@@ -994,6 +1007,7 @@
           document.styleSheets["1"].rules[j].style.backgroundImage = backgroundImage.replace("spaceship", "triangle");
         }
       }
+
       if (this.currentAlgorithm === "bidirectional") {
 
         document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>does not guarantee</b></i> the shortest path!`;
@@ -1002,9 +1016,6 @@
       } else {
         document.getElementById("bombLegend").className = "";
         document.getElementById("startButtonAddObject").className = "navbar-inverse navbar-nav";
-      }
-      if (guaranteed.includes(this.currentAlgorithm)) {
-        document.getElementById("algorithmDescriptor").innerHTML = `${name} is <i><b>weighted</b></i> and <i><b>guarantees</b></i> the shortest path!`;
       }
     };
 
@@ -1067,8 +1078,12 @@
       if (!this.buttonsOn) {
         this.buttonsOn = true;
 
+        // actual click button to algo starts....
+
         document.getElementById("startButtonStart").onclick = () => {
+          // alert(this.currentAlgorithm);
           if (!this.currentAlgorithm) {
+
             document.getElementById("startButtonStart").innerHTML = '<button class="btn btn-default navbar-btn" type="button">Pick an Algorithm!</button>'
           } else {
             this.clearPath("clickedButton");
@@ -1076,6 +1091,7 @@
             let weightedAlgorithms = ["dijkstra", "CLA", "CLA", "greedy"];
             let unweightedAlgorithms = ["dfs", "bfs"];
             let success;
+
             if (this.currentAlgorithm === "bidirectional") {
               if (!this.numberOfObjects) {
                 success = bidirectional(this.nodes, this.start, this.target, this.nodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic, this);
@@ -1086,7 +1102,9 @@
                 launchAnimations(this, success, "weighted");
               }
               this.algoDone = true;
-            } else if (this.currentAlgorithm === "astar") {
+            }
+
+            else if (this.currentAlgorithm === "astar") {
               if (!this.numberOfObjects) {
                 success = weightedSearchAlgorithm(this.nodes, this.start, this.target, this.nodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic);
                 launchAnimations(this, success, "weighted");
@@ -1096,15 +1114,26 @@
                 launchAnimations(this, success, "weighted", "object", this.currentAlgorithm);
               }
               this.algoDone = true;
-            } else if (weightedAlgorithms.includes(this.currentAlgorithm)) {
+            }
+
+            else if (weightedAlgorithms.includes(this.currentAlgorithm)) {
+
+              // By default numberOfObjects = 0
+              // first time go to if
               if (!this.numberOfObjects) {
+                // alert("if");
                 success = weightedSearchAlgorithm(this.nodes, this.start, this.target, this.nodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic);
+                //alert(success.length);
+
                 launchAnimations(this, success, "weighted");
+                //alert(success.length);
               } else {
+                // alert("else");
                 this.isObject = true;
                 success = weightedSearchAlgorithm(this.nodes, this.start, this.object, this.objectNodesToAnimate, this.boardArray, this.currentAlgorithm, this.currentHeuristic);
                 launchAnimations(this, success, "weighted", "object", this.currentAlgorithm, this.currentHeuristic);
               }
+
               this.algoDone = true;
             } else if (unweightedAlgorithms.includes(this.currentAlgorithm)) {
               if (!this.numberOfObjects) {
@@ -1229,7 +1258,7 @@
         // }
 
         document.getElementById("startButtonClearBoard").onclick = () => {
-          document.getElementById("startButtonAddObject").innerHTML = '<a href="#">Add Bomb</a></li>';
+          document.getElementById("startButtonAddObject").innerHTML = '<a href="#">Add Person</a></li>';
 
 
 
